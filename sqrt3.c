@@ -40,7 +40,7 @@ int main( )
     while (scanf("%lg %lg %lg", &eq.a, &eq.b, &eq.c) != 3)
     {
         clean_buffer();
-        printf("Error, were entered wrong symbols. Try again.\n";
+        printf("Error, were entered wrong symbols. Try again.\n");
     }
 
     //scanf("%lg %lg %lg", &eq.a, &eq.b, &eq.c);
