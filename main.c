@@ -9,17 +9,18 @@ typedef enum{
     INF_ROOTS = 3,
 } solutions_count_t;
 
+void hello_words();
+void scan_symbols(struct equation* eq);
 void clean_buffer();
 int compare_num(double x, double y);
 int equal_num(double x, double y);
 int solve_equation(struct equation* eq);
 int linear_equation(struct equation* eq);
 int quadratic_equation(struct equation* eq);
+void print_result(struct equation* eq);
 int one_test(double a1, double b1, double c1, double x1_ref, double x2_ref, solutions_count_t n_roots_ref);
 int run_test();
-
-
-//typedef struct equation* eq_ptr_t;
+void test_solve_equation();
 
 const double EPS = 0.00001;
 
@@ -29,45 +30,42 @@ struct equation{
     solutions_count_t n_roots;
 };
 
-int main( )
+int main(void)
 {
-    if (run_test())
+    #ifdef DEBUG
+
+    test_solve_equation();
+
+    #endif
+
+
+    #ifndef DEBUG
+
+    struct equation eq;
+    eq = {0};
+
+    hello_words();
+    scan_symbols(&eq);
+    solve_equation(&eq);
+    print_result(&eq);
+
+    #endif
+}
+
+void hello_words()
+{
+    printf("This program solves a quadratic equation of the type: ax^2+bx+c=0.\n");
+    printf("Enter the coefficients (a, b, c) of the equation separated by space:\n");
+}
+
+void scan_symbols(struct equation* eq)
+{
+
+    while (scanf("%lg %lg %lg", &eq->a, &eq->b, &eq->c) != 3)
     {
-        printf("OK");
+        clean_buffer();
+        printf("Error, were entered wrong symbols. Try again.\n");
     }
-    else
-    {
-        printf("ERROR");
-    }
-    return 0;
-//    struct equation eq;
-
-//    eq = {0};
-
-//    printf("This program solves a quadratic equation of the type: ax^2+bx+c=0.\n");
-//    printf("Enter the coefficients (a, b, c) of the equation separated by space:\n");
-
-//    while (scanf("%lg %lg %lg", &eq.a, &eq.b, &eq.c) != 3)
-//    {
-//        clean_buffer();
-//        printf("Error, were entered wrong symbols. Try again.\n");
-//    }
-
-//    solve_equation(&eq);
-
-//    switch(eq.n_roots)
-//    {
-//    case NO_ROOTS: printf("This equation has no roots that are real numbers.\n");
-//                   break;
-//    case ONE_ROOT: printf("The number of roots: 1. The meaning of root: x=%lg.\n", eq.x1);
-//                    break;
-//    case TWO_ROOTS: printf("The number of roots: 2. The meaning of roots: x1=%lg, x2=%lg.\n", eq.x1, eq.x2);
-//                    break;
-//    case INF_ROOTS: printf("This equation has an infinite number of roots. The root can be any real number.\n");
-//                    break;
-//    default: break;
-//    }
-//    return 0;
 }
 
 void clean_buffer()
@@ -142,14 +140,42 @@ int quadratic_equation(struct equation* eq)
     {
         eq->x1 = (-eq->b+sqrt(d))/(2*eq->a);
         eq->x2 = (-eq->b-sqrt(d))/(2*eq->a);
+        if (equal_num(fabs(eq->x1), 0))
+        {
+            eq->x1 = 0;
+        }
+        else if (equal_num(fabs(eq->x2), 0))
+        {
+            eq->x2 = 0;
+        }
         return eq->n_roots = TWO_ROOTS;
     }
     else if (equal_num(d, 0))
     {
         eq->x1 = (-eq->b)/(2*eq->a);
+        if (equal_num(fabs(eq->x1), 0))
+        {
+            eq->x1 = 0;
+        }
         return eq->n_roots = ONE_ROOT;
     }
     return eq->n_roots = NO_ROOTS;
+}
+
+void print_result(struct equation* eq)
+{
+    switch(eq->n_roots)
+    {
+    case NO_ROOTS: printf("This equation has no roots that are real numbers.\n");
+                   break;
+    case ONE_ROOT: printf("The number of roots: 1. The meaning of root: x=%lg.\n", eq->x1);
+                    break;
+    case TWO_ROOTS: printf("The number of roots: 2. The meaning of roots: x1=%lg, x2=%lg.\n", eq->x1, eq->x2);
+                    break;
+    case INF_ROOTS: printf("This equation has an infinite number of roots. The root can be any real number.\n");
+                    break;
+    default: break;
+    }
 }
 
 int one_test(double a1, double b1, double c1, double x1_ref, double x2_ref, solutions_count_t n_roots_ref)
@@ -179,9 +205,23 @@ int run_test()
     ++i;
     passed += one_test(-55, 0.0012, 0.065, -0.0343667, 0.0343885, TWO_ROOTS);
     ++i;
+    passed += one_test(1, 0, 0, 0, 0, ONE_ROOT);
+    ++i;
     if (passed == i)
     {
         return 1;
     }
     return 0;
+}
+
+void test_solve_equation()
+{
+    if (run_test())
+    {
+        printf("OK");
+    }
+    else
+    {
+        printf("ERROR");
+    }
 }
