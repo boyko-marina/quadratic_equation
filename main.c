@@ -28,6 +28,12 @@ struct equation{
     solutions_count_t n_roots;
 };
 
+struct test_equation{
+    double a1, b1, c1;
+    double x1_ref, x2_ref;
+    solutions_count_t n_roots_ref;
+};
+
 int main( )
 {
     struct equation eq;
@@ -43,29 +49,19 @@ int main( )
         printf("Error, were entered wrong symbols. Try again.\n");
     }
 
-    //scanf("%lg %lg %lg", &eq.a, &eq.b, &eq.c);
-
     solve_equation(&eq);
 
-    //if (n_roots == WRONG)
-    //{
-    //    printf("Error, were entered wrong symbols. Try again")
-    //}
-    if (eq.n_roots == NO_ROOTS)
+    switch(eq.n_roots)
     {
-        printf("This equation has no roots that are real numbers.\n");
-    }
-    else if (eq.n_roots == ONE_ROOT)
-    {
-        printf("The number of roots: 1. The meaning of root: x=%lg.\n", eq.x1);
-    }
-    else if (eq.n_roots == TWO_ROOTS)
-    {
-        printf("The number of roots: 2. The meaning of roots: x1=%lg, x2=%lg.\n", eq.x1, eq.x2);
-    }
-    else if (eq.n_roots == INF_ROOTS)
-    {
-        printf("This equation has an infinite number of roots. The root can be any real number.\n");
+    case NO_ROOTS: printf("This equation has no roots that are real numbers.\n");
+                   break;
+    case ONE_ROOT: printf("The number of roots: 1. The meaning of root: x=%lg.\n", eq.x1);
+                    break;
+    case TWO_ROOTS: printf("The number of roots: 2. The meaning of roots: x1=%lg, x2=%lg.\n", eq.x1, eq.x2);
+                    break;
+    case INF_ROOTS: printf("This equation has an infinite number of roots. The root can be any real number.\n");
+                    break;
+    default: break;
     }
     return 0;
 }
@@ -152,4 +148,9 @@ int quadratic_equation(struct equation* eq)
     return eq->n_roots = NO_ROOTS;
 }
 
-
+int one_test(double a, double b, double c, double x1_ref, double x2_ref, int n_roots_ref)
+{
+    double x1 = 0, x2 = 0;
+    if (!((n_roots_ref == solve_equation(a, b, c, &x1, &x2))
+    
+}
