@@ -7,11 +7,9 @@
 #include "solve_equation.h"
 #include "test.h"
 
-void scan_test_data(struct test_eq* test)
+void scan_test_data(struct test_eq* test, char *argv[])
 {
-    FILE *file;
-
-    file = fopen("equation_data.txt", "r");
+    FILE *file = fopen(argv[1], "r");
 
     int k = 0, i = 1;
     while (fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) == 6)
@@ -20,7 +18,7 @@ void scan_test_data(struct test_eq* test)
         i++;
     }
 
-    if (fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) < 6)
+    if (0 < fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) && fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) < 6)
     {
         printf("Error. Wrong symbols in line %d.\n", i);
     }

@@ -7,19 +7,14 @@
 #include "solve_equation.h"
 #include "test.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
 #ifdef DEBUG
 
     struct test_eq test;
     test = {0};
 
-//    char filename;
-
-//    printf("Enter the filename:\n");
-//    scanf("%s", &filename);
-
-    scan_test_data(&test);
+    scan_test_data(&test, argv);
 
 #endif
 
@@ -35,4 +30,5 @@ int main(void)
     print_result(&eq);
 
 #endif
+    return 0;
 }
