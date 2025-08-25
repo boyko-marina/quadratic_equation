@@ -1,6 +1,7 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
+
 #include "scan_and_print.h"
 #include "comparison_num.h"
 #include "solve_equation.h"
@@ -8,14 +9,14 @@
 
 int main(void)
 {
-    #ifdef DEBUG
+#ifdef DEBUG
 
     test_solve_equation();
 
-    #endif
+#endif
 
 
-    #ifndef DEBUG
+#ifndef DEBUG
 
     struct equation eq;
     eq = {0};
@@ -25,5 +26,5 @@ int main(void)
     solve_equation(&eq);
     print_result(&eq);
 
-    #endif
+#endif
 }

@@ -1,6 +1,7 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
+
 #include "scan_and_print.h"
 #include "comparison_num.h"
 #include "solve_equation.h"
@@ -37,7 +38,7 @@ int linear_equation(struct equation* eq)
         }
         else
         {
-            eq->x1 = (-eq->c)/eq->b;
+            eq->x1 = (-eq->c) / eq->b;
             return eq->n_roots = ONE_ROOT;
         }
     }
@@ -46,11 +47,11 @@ int linear_equation(struct equation* eq)
 
 int quadratic_equation(struct equation* eq)
 {
-    double d = eq->b*eq->b-4*eq->a*eq->c;
+    double d = (eq->b * eq->b) - (4 * eq->a * eq->c);
     if (compare_num(d, 0))
     {
-        eq->x1 = (-eq->b+sqrt(d))/(2*eq->a);
-        eq->x2 = (-eq->b-sqrt(d))/(2*eq->a);
+        eq->x1 = (- (eq->b) + sqrt(d)) / (2 * eq->a);
+        eq->x2 = (- (eq->b) - sqrt(d)) / (2 * eq->a);
         if (equal_num(fabs(eq->x1), 0))
         {
             eq->x1 = 0;
@@ -63,7 +64,7 @@ int quadratic_equation(struct equation* eq)
     }
     else if (equal_num(d, 0))
     {
-        eq->x1 = (-eq->b)/(2*eq->a);
+        eq->x1 = (- (eq->b)) / (2 * eq->a);
         if (equal_num(fabs(eq->x1), 0))
         {
             eq->x1 = 0;

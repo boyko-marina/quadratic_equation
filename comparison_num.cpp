@@ -1,11 +1,12 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
+
 #include "comparison_num.h"
 
 int equal_num(double x, double y)
 {
-    if (fabs(x-y)<EPS)
+    if (fabs(x - y) < EPS)
     {
         return 1;
     }
@@ -14,7 +15,7 @@ int equal_num(double x, double y)
 
 int compare_num(double x, double y)
 {
-    if ((x-y)>EPS)
+    if ((x - y) > EPS)
     {
         return 1;
     }
