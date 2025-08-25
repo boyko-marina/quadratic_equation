@@ -50,8 +50,8 @@ int quadratic_equation(struct equation* eq)
     double d = (eq->b * eq->b) - (4 * eq->a * eq->c);
     if (compare_num(d, 0))
     {
-        eq->x1 = (- (eq->b) + sqrt(d)) / (2 * eq->a);
-        eq->x2 = (- (eq->b) - sqrt(d)) / (2 * eq->a);
+        eq->x1 = (-(eq->b) + sqrt(d)) / (2 * eq->a);
+        eq->x2 = (-(eq->b) - sqrt(d)) / (2 * eq->a);
         if (equal_num(fabs(eq->x1), 0))
         {
             eq->x1 = 0;
@@ -64,7 +64,7 @@ int quadratic_equation(struct equation* eq)
     }
     else if (equal_num(d, 0))
     {
-        eq->x1 = (- (eq->b)) / (2 * eq->a);
+        eq->x1 = (-(eq->b)) / (2 * eq->a);
         if (equal_num(fabs(eq->x1), 0))
         {
             eq->x1 = 0;

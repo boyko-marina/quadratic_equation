@@ -7,52 +7,40 @@
 #include "solve_equation.h"
 #include "test.h"
 
-int validate_solution(struct test_eq* tests)
+void scan_test_data(struct test_eq* test)
 {
-    struct equation eq = { .a = tests->a, .b = tests->b, .c = tests->c, .x1 = 0, .x2 = 0, .n_roots = NO_ROOTS};
+    FILE *file;
+
+    file = fopen("equation_data.txt", "r");
+
+    int k = 0, i = 1;
+    while (fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) == 6)
+    {
+        k += validate_solution(test);
+        i++;
+    }
+
+    if (fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) < 6)
+    {
+        printf("Error. Wrong symbols in line %d.\n", i);
+    }
+
+    fclose(file);
+}
+
+int validate_solution(struct test_eq* test)
+{
+    struct equation eq = { .a = test->a, .b = test->b, .c = test->c, .x1 = 0, .x2 = 0, .n_roots = NO_ROOTS};
 
     solve_equation(&eq);
-    if (!(eq.n_roots == tests->n_roots) ||
-        !((equal_num(eq.x1, tests->x1) && equal_num(eq.x2, tests->x2)) ||
-        (equal_num(eq.x1, tests->x2) && equal_num(eq.x2, tests->x1))))
+    if (!(eq.n_roots == test->n_roots) ||
+        !((equal_num(eq.x1, test->x1) && equal_num(eq.x2, test->x2)) ||
+        (equal_num(eq.x1, test->x2) && equal_num(eq.x2, test->x1))))
     {
-        printf("FAILED: solve_equation (%lf, %lf, %lf), -> %d, x1=%lf, x2=%lf (should be: x1=%lf, x2=%lf)\n", tests->a, tests->b, tests->c, eq.n_roots, eq.x1, eq.x2, tests->x1, tests->x2);
+        printf("FAILED: solve_equation (%lf, %lf, %lf), -> %d, x1=%lf, x2=%lf (should be: x1=%lf, x2=%lf)\n", test->a, test->b, test->c, eq.n_roots, eq.x1, eq.x2, test->x1, test->x2);
         return 0;
     }
     return 1;
 }
 
-int run_test()
-{
-    int passed = 0;
-    struct test_eq tests[] = { { .a = 1, .b = -5, .c = 6, .x1 = 2, .x2 = 3, .n_roots = TWO_ROOTS},
-                               { .a = 0.014, .b = -5, .c = 0.9, .x1 = 0.180091, .x2 = 356.96277, .n_roots = TWO_ROOTS},
-                               { .a = -55, .b = 0.0012, .c = 0.065, .x1 = -0.0343667, .x2 = 0.0343885, .n_roots = TWO_ROOTS},
-                               { .a = 1, .b = 0, .c = 0, .x1 = 0, .x2 = 0, .n_roots = ONE_ROOT}
-                             };
 
-    int size = sizeof(tests) / sizeof(tests[0]);
-
-    for (int i = 0; i < size; i++)
-    {
-        passed += validate_solution(&tests[i]);
-    }
-
-    if (passed == size)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-void test_solve_equation()
-{
-    if (run_test())
-    {
-        printf("OK");
-    }
-    else
-    {
-        printf("ERROR");
-    }
-}

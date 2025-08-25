@@ -11,7 +11,15 @@ int main(void)
 {
 #ifdef DEBUG
 
-    test_solve_equation();
+    struct test_eq test;
+    test = {0};
+
+//    char filename;
+
+//    printf("Enter the filename:\n");
+//    scanf("%s", &filename);
+
+    scan_test_data(&test);
 
 #endif
 

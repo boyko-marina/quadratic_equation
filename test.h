@@ -4,6 +4,7 @@ struct test_eq{
     solutions_count_t n_roots;
 };
 
-int validate_solution(struct test_eq* tests);
-int run_test();
-void test_solve_equation();
+int validate_solution(struct test_eq* test);
+void scan_test_data(struct test_eq* test);
+
+
