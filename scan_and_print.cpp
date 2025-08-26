@@ -3,10 +3,9 @@
 
 #include "scan_and_print.h"
 
-
 void print_hello_words()
 {
-    printf("This program solves a quadratic equation of the type: ax^2+bx+c=0.\n");
+    printf("This program solves a quadratic equation of the type: ax^2 + bx + c = 0.\n");
     printf("Enter the coefficients (a, b, c) of the equation separated by space:\n");
 }
 

@@ -14,7 +14,7 @@ void run_tests_from_file(FILE *file)
 
     int k = 0, i = 1;
 
-    while (1 == 1)
+    for (;;)
     {
         int n = fscanf(file, "%lf %lf %lf %lf %lf %d", &test.a, &test.b, &test.c, &test.x1, &test.x2, (int*) &test.n_roots);
 
@@ -25,10 +25,10 @@ void run_tests_from_file(FILE *file)
         }
         else if (0 < n && n < 6)
         {
-            printf("Error. Wrong symbols in line %d.\n", i);
+            printf("ERROR. Wrong symbol in line %d.\n", i);
             break;
         }
-        else if (n == 0)
+        else
         {
             break;
         }
