@@ -11,10 +11,25 @@ int main(int argc, char *argv[])
 {
 #ifdef DEBUG
 
-    struct test_eq test;
-    test = {0};
+    FILE *file;
 
-    scan_test_data(&test, argv);
+    if (argc == 2)
+    {
+        file = fopen(argv[1], "r");
+
+        if (file == 0)
+        {
+            printf("ERROR. Could not open this file.\n");
+        }
+        else
+        {
+            run_tests_from_file(file);
+        }
+    }
+    else
+    {
+        printf("ERROR. No filename was entered.\n");
+    }
 
 #endif
 

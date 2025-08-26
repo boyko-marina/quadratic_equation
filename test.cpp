@@ -7,26 +7,35 @@
 #include "solve_equation.h"
 #include "test.h"
 
-void scan_test_data(struct test_eq* test, char *argv[])
+void run_tests_from_file(FILE *file)
 {
-    FILE *file = fopen(argv[1], "r");
+    struct equation test;
+    test = {0};
 
     int k = 0, i = 1;
-    while (fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) == 6)
-    {
-        k += validate_solution(test);
-        i++;
-    }
 
-    if (0 < fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) && fscanf(file, "%lf %lf %lf %lf %lf %d", &test->a, &test->b, &test->c, &test->x1, &test->x2, (int*) &test->n_roots) < 6)
+    while (1 == 1)
     {
-        printf("Error. Wrong symbols in line %d.\n", i);
-    }
+        int n = fscanf(file, "%lf %lf %lf %lf %lf %d", &test.a, &test.b, &test.c, &test.x1, &test.x2, (int*) &test.n_roots);
 
-    fclose(file);
+        if (n == 6)
+        {
+            k += validate_solution(&test);
+            i++;
+        }
+        else if (0 < n && n < 6)
+        {
+            printf("Error. Wrong symbols in line %d.\n", i);
+            break;
+        }
+        else if (n == 0)
+        {
+            break;
+        }
+    }
 }
 
-int validate_solution(struct test_eq* test)
+int validate_solution(struct equation* test)
 {
     struct equation eq = { .a = test->a, .b = test->b, .c = test->c, .x1 = 0, .x2 = 0, .n_roots = NO_ROOTS};
 
