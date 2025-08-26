@@ -1,33 +1,15 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
+#include <assert.h>
 
 #include "scan_and_print.h"
 #include "comparison_num.h"
 #include "solve_equation.h"
 #include "test.h"
 
-//! Solves a quadratic equation ax^2 + bx + c = 0
-//!
-//! @param [in] a a-coefficient
-//! @param [in] b b-coefficient
-//! @param [in] c c-coefficient
-//! @param [out] x1 Pointer to the 1st root
-//! @param [out] x2 Pointer to the 2nd root
-//! @param [out] n_roots Pointer to the number of roots
-//!
-//! @return Number of roots
-//!
-//! @note In case of 0 number of roots,
-//!       returns NO_ROOTS
-//! @note In case of 1 root,
-//!       returns ONE_ROOTS
-//! @note In case of 2 roots,
-//!       returns TWO_ROOTS
-//! @note In case of infinite number of roots,
-//!       returns INF_ROOTS
-
-
+#define COLOR_MAGENTA "\x1b[35m"
+#define COLOR_RESET   "\x1b[0m"
 
 int main(int argc, char *argv[])
 {
@@ -43,7 +25,7 @@ int main(int argc, char *argv[])
 
             if (file == NULL)
             {
-                printf("ERROR. Could not open this file.\n");
+                printf(COLOR_MAGENTA "ERROR. Could not open this file." COLOR_RESET "\n");
             }
             else
             {
@@ -53,7 +35,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        printf("ERROR. No filename was entered.\n");
+        printf(COLOR_MAGENTA "ERROR. No filename was entered." COLOR_RESET "\n");
     }
 
 #endif
