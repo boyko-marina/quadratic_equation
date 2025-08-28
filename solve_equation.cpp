@@ -22,7 +22,7 @@
 //! @note In case of linear equation bx + c = 0,
 //!       returns function for solving linear equation
 //! @note In case of quadratic equation ax^2 + bx + c = 0,
-//!       returns function for so quadratic equation
+//!       returns function for solving quadratic equation
 
 
 int solve_equation(struct equation* eq)

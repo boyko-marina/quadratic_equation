@@ -31,7 +31,6 @@ int equal_num(double x, double y)
 //!
 //! @param [in] x the 1st double number that is being compared
 //! @param [in] y the 2nd double number to which the 1st is being compared
-//! @param [in] c Pointer to the c-coefficient
 //!
 //! @return True or False
 //!
