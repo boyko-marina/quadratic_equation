@@ -15,13 +15,12 @@
 //! Runs tests from file
 //!
 //! @param [in] file Pointer to the file with tests
-//! @param [in] a Pointer to the a-coefficient
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
-//! @param [in] x1 Pointer to the 1st root
-//! @param [in] x2 Pointer to the 2nd root
-//! @param [in] n_roots Pointer to the number of roots
-//!
+//! @param [in] test.a Address of the reference a-coefficient
+//! @param [in] test.b Address of the reference b-coefficient
+//! @param [in] test.c Address of the reference c-coefficient
+//! @param [in] test.x1 Address of the reference 1st root
+//! @param [in] test.x2 Address of the reference 2nd root
+//! @param [in] test.n_roots PoAddress of the reference number of roots
 //!
 //! @note In case of symbols in file, which are numbers,
 //!       validates the solution from program
@@ -61,12 +60,18 @@ void run_tests_from_file(FILE *file)
 //! Validates the solution from program
 //!
 //! @param [in] test Structure with the reference data
-//! @param [in] a Pointer to the a-coefficient
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
-//! @param [out] x1 Pointer to the 1st root
-//! @param [out] x2 Pointer to the 2nd root
-//! @param [out] n_roots Pointer to the number of roots
+//! @param [in] test->a Pointer to the reference a-coefficient
+//! @param [in] test->b Pointer to the reference b-coefficient
+//! @param [in] test->c Pointer to the reference c-coefficient
+//! @param [in] test->x1 Pointer to the reference 1st root
+//! @param [in] test->x2 Pointer to the reference 2nd root
+//! @param [in] test->n_roots Pointer to the reference number of roots
+//! @param [in] eq.a Address of the a-coefficient
+//! @param [in] eq.b Address of the b-coefficient
+//! @param [in] eq.c Address of the c-coefficient
+//! @param [out] eq.x1 Address of the 1st root
+//! @param [out] eq.x2 Address of the 2nd root
+//! @param [out] eq.n_roots Address of the number of roots
 //!
 //! @return match of the reference data the reference data and program solution
 //!

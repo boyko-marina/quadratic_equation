@@ -21,9 +21,9 @@ void print_hello_words()
 
 //! Scans the enter symbols from user
 //!
-//! @param [in] a Pointer to the a-coefficient
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
+//! @param [in] eq->a Pointer to the a-coefficient
+//! @param [in] eq->b Pointer to the b-coefficient
+//! @param [in] eq->c Pointer to the c-coefficient
 //!
 //! @note In case of entering symbols, which are not numbers
 //!       clears buffer (ignores line) and prints error
@@ -47,15 +47,15 @@ void scan_symbols(struct equation* eq)
 void clean_buffer()
 {
     int symbol = 0;
-    while ((symbol = getchar()) != '\n')
+    do
     {
-        // do nothing;
-    }
+        symbol = getchar();
+    } while (symbol != '\n' && symbol != EOF);
 }
 
 //! Prints result of solving the equation
 //!
-//! @param [in] n_roots Pointer to the roots number
+//! @param [in] eq->n_roots Pointer to the roots number
 //!
 //! @note In case of 0 number of roots,
 //!       n_roots is equal to NO_ROOTS
@@ -99,3 +99,4 @@ void print_result(struct equation* eq)
     }
     printf(COLOR_RESET);
 }
+

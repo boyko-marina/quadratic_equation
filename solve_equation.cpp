@@ -10,12 +10,12 @@
 
 //! Defines the type of equation
 //!
-//! @param [in] a Pointer to the a-coefficient
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
-//! @param [out] x1 Pointer to the 1st root
-//! @param [out] x2 Pointer to the 2nd root
-//! @param [out] n_roots Pointer to the number of roots
+//! @param [in] eq->a Pointer to the a-coefficient
+//! @param [in] eq->b Pointer to the b-coefficient
+//! @param [in] eq->c Pointer to the c-coefficient
+//! @param [out] eq->x1 Pointer to the 1st root
+//! @param [out] eq->x2 Pointer to the 2nd root
+//! @param [out] eq->n_roots Pointer to the number of roots
 //!
 //! @return the type of equation
 //!
@@ -23,7 +23,6 @@
 //!       returns function for solving linear equation
 //! @note In case of quadratic equation ax^2 + bx + c = 0,
 //!       returns function for solving quadratic equation
-
 
 int solve_equation(struct equation* eq)
 {
@@ -36,10 +35,10 @@ int solve_equation(struct equation* eq)
 
 //! Solves a linear equation bx + c = 0
 //!
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
-//! @param [out] x1 Pointer to the root
-//! @param [out] n_roots Pointer to the number of roots
+//! @param [in] eq->b Pointer to the b-coefficient
+//! @param [in] eq->c Pointer to the c-coefficient
+//! @param [out] eq->x1 Pointer to the root
+//! @param [out] eq->n_roots Pointer to the number of roots
 //!
 //! @return Number of roots
 //!
@@ -80,12 +79,12 @@ int linear_equation(struct equation* eq)
 
 //! Solves a quadratic equation ax^2 + bx + c = 0
 //!
-//! @param [in] a Pointer to the a-coefficient
-//! @param [in] b Pointer to the b-coefficient
-//! @param [in] c Pointer to the c-coefficient
-//! @param [out] x1 Pointer to the 1st root
-//! @param [out] x2 Pointer to the 2nd root
-//! @param [out] n_roots Pointer to the number of roots
+//! @param [in] eq->a Pointer to the a-coefficient
+//! @param [in] eq->b Pointer to the b-coefficient
+//! @param [in] eq->c Pointer to the c-coefficient
+//! @param [out] eq->x1 Pointer to the 1st root
+//! @param [out] eq->x2 Pointer to the 2nd root
+//! @param [out] eq->n_roots Pointer to the number of roots
 //!
 //! @return Number of roots
 //!
