@@ -93,7 +93,10 @@ int validate_solution(struct equation* test)
         printf(COLOR_MAGENTA "FAILED: solve_equation (%lf, %lf, %lf), -> %d, x1=%lf, x2=%lf (should be: x1=%lf, x2=%lf)." COLOR_RESET "\n", test->a, test->b, test->c, eq.n_roots, eq.x1, eq.x2, test->x1, test->x2);
         return 0;
     }
-    return 1;
+    else
+    {
+        return 1;
+    }
 }
 
 

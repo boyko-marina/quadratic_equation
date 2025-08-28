@@ -4,6 +4,7 @@
 #include <assert.h>
 
 #include "scan_and_print.h"
+#include "comparison_num.h"
 
 #define COLOR_YELLOW  "\x1b[33m"
 #define COLOR_GREEN   "\x1b[32m"
@@ -79,6 +80,7 @@ void print_result(struct equation* eq)
         }
         case ONE_ROOT:
         {
+            assert(equal_num(eq->x2, 0));
             printf("The number of roots: 1. The meaning of root: x=%lg.\n", eq->x1);
             break;
         }
@@ -89,6 +91,8 @@ void print_result(struct equation* eq)
         }
         case INF_ROOTS:
         {
+            assert(equal_num(eq->x1, 0));
+            assert(equal_num(eq->x2, 0));
             printf("This equation has an infinite number of roots. The root can be any real number.\n");
             break;
         }

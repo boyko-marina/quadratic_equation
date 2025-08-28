@@ -55,10 +55,15 @@ int linear_equation(struct equation* eq)
     {
         if (equal_num(eq->c, 0))
         {
+            assert(equal_num(eq->a, 0));
+            assert(equal_num(eq->b, 0));
+            assert(equal_num(eq->c, 0));
             return eq->n_roots = INF_ROOTS;
         }
         else
         {
+            assert(equal_num(eq->a, 0));
+            assert(equal_num(eq->b, 0));
             return eq->n_roots = NO_ROOTS;
         }
     }
@@ -99,6 +104,7 @@ int linear_equation(struct equation* eq)
 
 int quadratic_equation(struct equation* eq)
 {
+    assert(!(equal_num(eq->a, 0)));
     double d = (eq->b * eq->b) - (4 * eq->a * eq->c);
     if (compare_num(d, 0))
     {

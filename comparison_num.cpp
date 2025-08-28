@@ -2,9 +2,8 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
-#include <assert.h>
-
 #include "comparison_num.h"
+
 
 //! Compare first numbers for equality
 //!

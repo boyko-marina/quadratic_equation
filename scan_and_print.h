@@ -1,8 +1,6 @@
 #ifndef SCAN_AND_PRINT
 #define SCAN_AND_PRINT
 
-#ifdef DOXYGEN
-
 /// The list of possible number of roots
 typedef enum{
     NO_ROOTS = 0, ///< Points that number of roots is 0
@@ -17,25 +15,6 @@ struct equation{
     double x1, x2; ///< x1 - 1st root, x2 - 2nd root
     solutions_count_t n_roots; ///< The number of roots
 };
-
-#endif
-
-#ifndef DOXYGEN
-
-typedef enum{
-    NO_ROOTS = 0,
-    ONE_ROOT = 1,
-    TWO_ROOTS = 2,
-    INF_ROOTS = 3,
-} solutions_count_t;
-
-struct equation{
-    double a, b, c;
-    double x1, x2;
-    solutions_count_t n_roots;
-};
-
-#endif
 
 void print_hello_words();
 void scan_symbols(struct equation* eq);

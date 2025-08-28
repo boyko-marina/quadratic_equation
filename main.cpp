@@ -1,7 +1,6 @@
 #include <TXLib.h>
 #include <stdio.h>
 #include <math.h>
-#include <assert.h>
 
 #include "scan_and_print.h"
 #include "comparison_num.h"
